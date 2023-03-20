@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 public class SpigotPAPIBridge extends PlaceholderExpansion {
 
-    private static final String IDENTIFIER = "fpapi";
+    private static final String IDENTIFIER = "FPAPIBridge";
     private static final String AUTHOR = "Envyful";
-    private static final String VERSION = "1.0.0";
+    private static final String VERSION = "1.0.1";
 
     @Override
     public String getIdentifier() {
@@ -29,6 +29,11 @@ public class SpigotPAPIBridge extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
-        return UtilPlaceholder.replaceIdentifiers(player.getUniqueId(), "%" + params + "%");
+        if(player != null){
+            return UtilPlaceholder.replaceIdentifiers(player.getUniqueId(), "%" + params + "%");
+        }
+        else {
+            return UtilPlaceholder.replaceIdentifiers((OfflinePlayer) null, "%" + params + "%");
+        }
     }
 }
